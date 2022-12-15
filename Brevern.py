@@ -1,19 +1,26 @@
-player_health = 100
-player_inventory = []
+  from character import Character
+  from weapon import Weapon
+  from inventory import Inventory
 
-welcome_message = "The wind rustles the empty trees as you come to."
+  # Create some weapons
+  sword = Weapon("Sword", 10, 5)
+  dagger = Weapon("Dagger", 5, 7)
 
-print(welcome_message)
+  # Create a character and give them a weapon
+  player = Character("Player", 100, sword)
 
-starting_health = input("When you fell against the tree, were you: \n1: Losing a fight\n2: Drinking\n3: I have no idea\n\n[1]\n[2]\n[3]\n")
+  # Create an inventory and add some items to it
+  inventory = Inventory()
+  inventory.add_item(dagger)
 
-if starting_health == 1:
-    player_health = 70
+  # Get the first item in the inventory and equip it as the player's weapon
+  item = inventory.get_item(0)
+player.weapon = item
 
-elif starting_health == 2:
-    player_health == 100
+# Attack the target with the player's current weapon
+target = Character("Target", 100, None)
+player.attack(target)
 
-else:
-    player_health == 100
+# Print out the target's health to verify that it was damaged
+print(target.health)
 
-print(f"Your Health: {player_health}")
